@@ -8,7 +8,7 @@ namespace LinkedListDemo
     {
         public Node head;
 
-        internal void Add(int data)
+        public void Add(int data)
         {
             Node node = new Node(data);
             if (this.head == null)
@@ -97,6 +97,42 @@ namespace LinkedListDemo
             Console.WriteLine(" First node : {0} Removed.", this.head.data);
             this.head = this.head.next;
             return this.head;
+        }
+
+        internal Node RemoveLastNode()
+        {
+            if (head == null)
+            {
+                return null;
+            }
+            if (head.next == null)
+            {
+                return null;
+            }
+            Node NewNode = head;
+            while (NewNode.next.next != null)
+            {
+                NewNode = NewNode.next;
+            }
+            Console.WriteLine("\n Last element [{0}] is removed", NewNode.next.data);
+            NewNode.next = null;
+            return head;
+        }
+
+        public Node Search(int searchValue)
+        {
+            int position=0;
+            while (this.head != null)
+            {
+                if (this.head.data == searchValue)
+                {
+                    Console.WriteLine(" Element {0} found at position : {1}", searchValue, position);
+                    return this.head;
+                }
+                this.head = this.head.next;
+                position++;
+            }
+            return null;
         }
 
         public void Display()
